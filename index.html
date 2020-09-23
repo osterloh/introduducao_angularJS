@@ -1,20 +1,93 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="helloWorld">
+}<!DOCTYPE html>
+<html lang="en" ng-app="listaTelefonica">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
-    <script src="angular.js"></script>
+    <title>Lista Telefonica</title>
+
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css" />
+    <style>
+      .jumbotron {
+        width: 400px;
+        text-align: center;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .table {
+        margin-top: 20px;
+      }
+
+      .form-control {
+        margin-bottom: 5px;
+      }
+    </style>
+
+    <script src="lib/angular/angular.js"></script>
     <script>
-      angular.module("helloWorld", []);
+      angular.module("listaTelefonica", []);
       angular
-        .module("helloWorld")
-        .controller("helloWorldCtrl", function ($scope) {
-          $scope.message = "Hello World!";
+        .module("listaTelefonica")
+        .controller("listaTelefonicaCtrl", function ($scope) {
+          $scope.app = "Lista Telefonica";
+          $scope.contatos = [
+            { nome: "Johnatan", telefone: "984727610" },
+            { nome: "Mayara", telefone: "988166177" },
+            { nome: "Anthony", telefone: "999765343" },
+          ];
+          //$scope.adcionarContato = function () {
+          //$scope.contatos.push({nome: $scope.nome, telefone: $scope.telefone}); //deve ser evitado ao maximo ler o controller dentro do $scope
+          //};
+          //$scope.adcionarContato = function (nome, telefone) {
+          //$scope.contatos.push({ nome: nome, telefone: telefone }); //passando por parâmetro, declarando no ngClick
+          //};
+          $scope.adcionarContato = function (contato) {
+            $scope.contatos.push(angular.copy(contato)); //melhor forma eh a utilizacao de abstracao
+            delete $scope.contato;
+          };
         });
     </script>
   </head>
-  <body>
-    <div ng-controller="helloWorldCtrl">{{message}}</div>
+  <body ng-controller="listaTelefonicaCtrl">
+    <div class="jumbotron">
+      <h4 ng-bind="app"></h4>
+      <table class="table table-striped">
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+        </tr>
+        <tr ng-repeat="contato in contatos">
+          <td>{{contato.nome}}</td>
+          <td>{{contato.telefone}}</td>
+        </tr>
+        <!--
+        <tr ng-repeat="contato in contatos">
+          <td ng-repeat="(key, value) in contato">{{value}}</td>
+        </tr>
+        -->
+      </table>
+      <hr />
+      <input
+        class="form-control"
+        type="text"
+        ng-model="contato.nome"
+        placeholder="Nome"
+      />
+      <input
+        class="form-control"
+        type="text"
+        ng-model="contato.telefone"
+        placeholder="Telefone"
+      />
+      {{contato}}
+      <!--{{nome}} {{telefone}}-->
+      <button
+        class="btn btn-primary btn-block"
+        ng-click="adcionarContato(contato)"
+      >
+        Adicionar contato
+      </button>
+    </div>
   </body>
 </html>
