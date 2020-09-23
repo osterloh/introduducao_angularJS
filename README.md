@@ -16,7 +16,7 @@ Este projeto está sendo desenvolvido em [AngularJS](https://angularjs.org/) par
 <script src="angular.js"></script>
 ```
 
-- Declaração do nome da aplicação na diretiva <strong>ng-app</strong> declara na tag HTML:
+- Declaração do nome da aplicação na diretiva <strong>ng-app</strong> declarada na tag HTML, definindo as fronteiras da aplicação:
 
 ```bash
 <html ng-app="helloWorld">
@@ -42,6 +42,131 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 <div ng-controller="helloWorldCtrl">
   {{message}}
 </div>
+```
+
+- Diretivas: são extenções da linguagem HTML, que permite a implementação de novos comportamentos de forma declarativa.
+
+- ngBind: substitui um elemento por expressão, parecido com a interpolação.
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+    });
+</script>
+
+<div class="jumbotron">
+  <h4 ng-bind="app"></h4>
+</div>
+```
+
+- ngRepeat: permite a iteração entre arrays ou coleções e objetos. Em sua declaração possui uma variavel temporária, a palavra chave IN e o array declarado no \$scope com os dados.
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610" },
+        { nome: "Mayara", telefone: "988166177" },
+        { nome: "Anthony", telefone: "999765343" },
+      ];
+    });
+</script>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Telefone</th>
+  </tr>
+  <tr ng-repeat="contato in contatos">
+    <td>{{contato.nome}}</td>
+    <td>{{contato.telefone}}</td>
+  </tr>
+</table>
+```
+
+- Outra forma de imprimir os dados de um array utlizando o ngRepeat, é utilizando a declaração chave valor:
+
+```bash
+<tr ng-repeat="contato in contatos">
+  <td ng-repeat="(key, value) in contato">{{value}}</td>
+</tr>
+```
+
+- ngModel: realiza o inverso do ngBind, que pega algo do $scope e exibe, o ngModel pega algo da view e define no $scope. Os elementos que são aplicados o ngModel podem ser em: input, select e textArea.
+
+```bash
+<input type="text" ng-model="nome" />
+<input type="text" ng-model="telefone" />
+```
+
+- ngClick: realiza a atribuição com base no comportamento disparado por algum evento, neste caso ao ser clicado no elemento o qual foi atribuido o ngClick.
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610" },
+        { nome: "Mayara", telefone: "988166177" },
+        { nome: "Anthony", telefone: "999765343" },
+      ];
+      $scope.adcionarContato = function () {
+        $scope.contatos.push({nome: $scope.nome, telefone: $scope.telefone}); //deve ser evitado ao maximo ler o controller dentro do $scope
+      };
+    });
+</script>
+<button ng-click="adcionarContato()">Adicionar contato</button>
+```
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610" },
+        { nome: "Mayara", telefone: "988166177" },
+        { nome: "Anthony", telefone: "999765343" },
+      ];
+      $scope.adcionarContato = function (nome, telefone) {
+        $scope.contatos.push({ nome: nome, telefone: telefone }); //passando por parâmetro, declarando no ngClick
+      };
+    });
+</script>
+<button ng-click="adcionarContato(nome, telefone)">Adicionar contato</button>
+```
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610" },
+        { nome: "Mayara", telefone: "988166177" },
+        { nome: "Anthony", telefone: "999765343" },
+      ];
+      $scope.adcionarContato = function (contato) {
+        $scope.contatos.push(angular.copy(contato)); //melhor forma eh a utilizacao de abstracao
+        delete $scope.contato;
+      };
+    });
+</script>
+<button ng-click="adcionarContato(contato)">Adicionar contato</button>
 ```
 
 ## Tecnologias
