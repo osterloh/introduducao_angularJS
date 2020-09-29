@@ -169,6 +169,67 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 <button ng-click="adcionarContato(contato)">Adicionar contato</button>
 ```
 
+- ngDisabled: Desabilita um elemento dinamicamente.
+
+```bash
+<button ng-click="adcionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">
+  Adicionar contato
+</button>
+```
+
+-ngOptions: Serve para renderizar as opções do um select.
+
+```bash
+<script src="lib/angular/angular.js"></script>
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610" },
+        { nome: "Mayara", telefone: "988166177" },
+        { nome: "Anthony", telefone: "999765343" },
+      ];
+      $scope.operadoras = [
+        { nome: "Oi", codigo: 14 },
+        { nome: "Vivo", codigo: 15 },
+        { nome: "Tim", codigo: 41 },
+      ];
+      $scope.adcionarContato = function (contato) {
+        $scope.contatos.push(angular.copy(contato));
+        delete $scope.contato;
+      };
+    });
+</script>
+
+<select
+  ng-model="contato.operadora"
+  ng-options="operadora.codigo as operadora.nome for operadora in operadoras"
+>
+  <option value="">Selecione uma operadora</option>
+</select>
+
+ou
+
+<select
+  ng-model="contato.operadora"
+  ng-options="operadora.nome for operadora in operadoras"
+>
+  <option value="">Selecione uma operadora</option>
+</select>
+
+ou
+
+<select
+  ng-model="contato.operadora"
+  ng-options="operadora.nome group by operadora.categoria for operadora in operadoras"
+>
+  <option value="">Selecione uma operadora</option>
+</select>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
