@@ -22,6 +22,14 @@
       .form-control {
         margin-bottom: 5px;
       }
+
+      .selecionado {
+        background-color: green;
+      }
+
+      .negrito {
+        font-weight: bold;
+      }
     </style>
 
     <script src="lib/angular/angular.js"></script>
@@ -58,6 +66,8 @@
             $scope.contatos.push(angular.copy(contato)); //melhor forma eh a utilizacao de abstracao
             delete $scope.contato;
           };
+          //$scope.classe1 = "selecionado";
+          //$scope.classe2 = "negrito";
         });
     </script>
   </head>
@@ -66,11 +76,21 @@
       <h4 ng-bind="app"></h4>
       <table class="table table-striped">
         <tr>
+          <th></th>
           <th>Nome</th>
           <th>Telefone</th>
           <th>Operadora</th>
         </tr>
-        <tr ng-repeat="contato in contatos">
+        <!--<tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
+        <tr
+          ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}"
+          ng-repeat="contato in contatos"
+        >-->
+        <tr
+          ng-class="{'selecionado negrito': contato.selecionado}"
+          ng-repeat="contato in contatos"
+        >
+          <td><input type="checkbox" ng-model="contato.selecionado" /></td>
           <td>{{contato.nome}}</td>
           <td>{{contato.telefone}}</td>
           <td>{{contato.operadora.nome}}</td>
