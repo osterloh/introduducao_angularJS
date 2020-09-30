@@ -230,6 +230,69 @@ ou
 </select>
 ```
 
+- ngClass e ngStyle: Aplicar classes CSS e estilos dinamicamente
+
+```bash
+<style>
+  .selecionado {
+    background-color: green;
+  }
+
+  .negrito {
+    font-weight: bold;
+  }
+</style>
+
+<script src="lib/angular/angular.js"></script>
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.classe1 = "selecionado";
+      $scope.classe2 = "negrito";
+    });
+</script>
+
+<tr ng-class="[classe1, classe2]">
+...
+</tr>
+```
+
+```bash
+<style>
+  .selecionado {
+    background-color: green;
+  }
+
+  .negrito {
+    font-weight: bold;
+  }
+</style>
+
+<script src="lib/angular/angular.js"></script>
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+    });
+</script>
+
+<tr ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}">
+  <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+  ...
+</tr>
+
+ou
+
+<tr ng-class="{'selecionado negrito': contato.selecionado}">
+  <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+  ...
+</tr>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
