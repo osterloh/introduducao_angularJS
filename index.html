@@ -40,9 +40,9 @@
         .controller("listaTelefonicaCtrl", function ($scope) {
           $scope.app = "Lista Telefonica";
           $scope.contatos = [
-            { nome: "Johnatan", telefone: "984727610" },
-            { nome: "Mayara", telefone: "988166177" },
-            { nome: "Anthony", telefone: "999765343" },
+            { nome: "Johnatan", telefone: "984727610", cor: "blue" },
+            { nome: "Mayara", telefone: "988166177", cor: "yellow" },
+            { nome: "Anthony", telefone: "999765343", cor: "red" },
           ];
           //$scope.adcionarContato = function () {
           //$scope.contatos.push({nome: $scope.nome, telefone: $scope.telefone}); //deve ser evitado ao maximo ler o controller dentro do $scope
@@ -68,6 +68,16 @@
           };
           //$scope.classe1 = "selecionado";
           //$scope.classe2 = "negrito";
+          $scope.apagarContatos = function (contatos) {
+            $scope.contatos = contatos.filter(function (contato) {
+              if (!contato.selecionado) return contato;
+            });
+          };
+          $scope.isContatoSelecionado = function (contatos) {
+            return contatos.some(function (contato) {
+              return contato.selecionado;
+            });
+          };
         });
     </script>
   </head>
@@ -80,6 +90,7 @@
           <th>Nome</th>
           <th>Telefone</th>
           <th>Operadora</th>
+          <th></th>
         </tr>
         <!--<tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
         <tr
@@ -94,6 +105,12 @@
           <td>{{contato.nome}}</td>
           <td>{{contato.telefone}}</td>
           <td>{{contato.operadora.nome}}</td>
+          <td>
+            <div
+              style="width: 20px; height: 20px"
+              ng-style="{'background-color': contato.cor}"
+            ></div>
+          </td>
         </tr>
         <!--
         <tr ng-repeat="contato in contatos">
@@ -134,6 +151,13 @@
         ng-disabled="!contato.nome || !contato.telefone"
       >
         Adicionar contato
+      </button>
+      <button
+        class="btn btn-danger btn-block"
+        ng-click="apagarContatos(contatos)"
+        ng-disabled="!isContatoSelecionado(contatos)"
+      >
+        Apagar contatos
       </button>
     </div>
   </body>
