@@ -293,6 +293,83 @@ ou
 </tr>
 ```
 
+- filter(): cria uma lista com os objetos que passam no teste implementado pela função fornecida, neste caso, retorna os contatos selecionados no checkbox, após clicar no botão Apagar Contatos.
+
+```bash
+  <script>
+    angular.module("listaTelefonica", []);
+    angular
+      .module("listaTelefonica")
+      .controller("listaTelefonicaCtrl", function ($scope) {
+        $scope.app = "Lista Telefonica";
+        $scope.contatos = [
+          { nome: "Johnatan", telefone: "984727610", cor: "blue" },
+          { nome: "Mayara", telefone: "988166177", cor: "yellow" },
+          { nome: "Anthony", telefone: "999765343", cor: "red" },
+        ];
+        $scope.operadoras = [
+          { nome: "Oi", codigo: 14, categoria: "Celular" },
+          { nome: "Vivo", codigo: 15, categoria: "Celular" },
+          { nome: "Tim", codigo: 41, categoria: "Celular" },
+          { nome: "GVT", codigo: 25, categoria: "Fixo" },
+          { nome: "Embratel", codigo: 21, categoria: "Fixo" },
+        ];
+        $scope.adcionarContato = function (contato) {
+          $scope.contatos.push(angular.copy(contato)); //melhor forma eh a utilizacao de abstracao
+          delete $scope.contato;
+        };
+        $scope.apagarContatos = function (contatos) {
+          $scope.contatos = contatos.filter(function (contato) {
+            if (!contato.selecionado) return contato;
+          });
+        };
+      });
+  </script>
+
+  <button ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
+```
+
+- some(): parecido com o filter().
+
+```bash
+  <script>
+    angular.module("listaTelefonica", []);
+    angular
+      .module("listaTelefonica")
+      .controller("listaTelefonicaCtrl", function ($scope) {
+        $scope.app = "Lista Telefonica";
+        $scope.contatos = [
+          { nome: "Johnatan", telefone: "984727610", cor: "blue" },
+          { nome: "Mayara", telefone: "988166177", cor: "yellow" },
+          { nome: "Anthony", telefone: "999765343", cor: "red" },
+        ];
+        $scope.operadoras = [
+          { nome: "Oi", codigo: 14, categoria: "Celular" },
+          { nome: "Vivo", codigo: 15, categoria: "Celular" },
+          { nome: "Tim", codigo: 41, categoria: "Celular" },
+          { nome: "GVT", codigo: 25, categoria: "Fixo" },
+          { nome: "Embratel", codigo: 21, categoria: "Fixo" },
+        ];
+        $scope.adcionarContato = function (contato) {
+          $scope.contatos.push(angular.copy(contato)); //melhor forma eh a utilizacao de abstracao
+          delete $scope.contato;
+        };
+        $scope.apagarContatos = function (contatos) {
+          $scope.contatos = contatos.filter(function (contato) {
+            if (!contato.selecionado) return contato;
+          });
+        };
+        $scope.isContatoSelecionado = function (contatos) {
+          return contatos.some(function (contato) {
+            return contato.selecionado;
+          });
+        };
+      });
+  </script>
+
+  <button ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
