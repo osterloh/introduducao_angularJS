@@ -84,7 +84,7 @@
   <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
       <h4 ng-bind="app"></h4>
-      <table class="table table-striped">
+      <table ng-show="contatos.length > 0" class="table table-striped">
         <tr>
           <th></th>
           <th>Nome</th>
@@ -155,10 +155,11 @@
       <button
         class="btn btn-danger btn-block"
         ng-click="apagarContatos(contatos)"
-        ng-disabled="!isContatoSelecionado(contatos)"
+        ng-if="isContatoSelecionado(contatos)"
       >
         Apagar contatos
       </button>
     </div>
+    <div ng-include="'footer.html'"></div>
   </body>
 </html>
