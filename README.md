@@ -370,6 +370,52 @@ ou
   <button ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
 ```
 
+- ngShow, ngHide e ngIf: servem para exibir elementos de forma condicional.
+- ngShow: mostra o elemento em tela;
+- ngHeide: oculta o elemento em tela;
+- ngIf: caso a condição seja TRUE o elemento é criado/removido.
+
+```bash
+<script>
+  angular.module("listaTelefonica", []);
+  angular
+    .module("listaTelefonica")
+    .controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.app = "Lista Telefonica";
+      $scope.contatos = [
+        { nome: "Johnatan", telefone: "984727610", cor: "blue" },
+        { nome: "Mayara", telefone: "988166177", cor: "yellow" },
+        { nome: "Anthony", telefone: "999765343", cor: "red" },
+      ];
+    });
+</script>
+
+<table ng-show="contatos.length > 0" class="table table-striped">
+...
+</table>
+<button ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos)">
+  Apagar contatos
+</button>
+
+ou
+
+<button ng-click="apagarContatos(contatos)" ng-hide="!isContatoSelecionado(contatos)">
+  Apagar contatos
+</button>
+
+ou
+
+<button ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">
+  Apagar contatos
+</button>
+```
+
+ngInclude: utilizado para incluir conteúdo dinamicamente.
+
+```bash
+<div ng-include="'footer.html'"></div>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
