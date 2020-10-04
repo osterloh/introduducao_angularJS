@@ -46,7 +46,7 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 
 - Diretivas: são extenções da linguagem HTML, que permite a implementação de novos comportamentos de forma declarativa.
 
-- ngBind: substitui um elemento por expressão, parecido com a interpolação.
+- <strong>ngBind:</strong> substitui um elemento por expressão, parecido com a interpolação.
 
 ```bash
 <script>
@@ -63,7 +63,7 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 </div>
 ```
 
-- ngRepeat: permite a iteração entre arrays ou coleções e objetos. Em sua declaração possui uma variavel temporária, a palavra chave IN e o array declarado no \$scope com os dados.
+- <strong>ngRepeat:</strong> permite a iteração entre arrays ou coleções e objetos. Em sua declaração possui uma variavel temporária, a palavra chave IN e o array declarado no \$scope com os dados.
 
 ```bash
 <script>
@@ -91,7 +91,7 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 </table>
 ```
 
-- Outra forma de imprimir os dados de um array utlizando o ngRepeat, é utilizando a declaração chave valor:
+- Outra forma de imprimir os dados de um array utlizando o <strong>ngRepeat</strong>, é utilizando a declaração chave valor:
 
 ```bash
 <tr ng-repeat="contato in contatos">
@@ -99,14 +99,14 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 </tr>
 ```
 
-- ngModel: realiza o inverso do ngBind, que pega algo do $scope e exibe, o ngModel pega algo da view e define no $scope. Os elementos que são aplicados o ngModel podem ser em: input, select e textArea.
+- <strong>ngModel:</strong> realiza o inverso do ngBind, que pega algo do $scope e exibe, o ngModel pega algo da view e define no $scope. Os elementos que são aplicados o ngModel podem ser em: input, select e textArea.
 
 ```bash
 <input type="text" ng-model="nome" />
 <input type="text" ng-model="telefone" />
 ```
 
-- ngClick: realiza a atribuição com base no comportamento disparado por algum evento, neste caso ao ser clicado no elemento o qual foi atribuido o ngClick.
+- <strong>ngClick:</strong> realiza a atribuição com base no comportamento disparado por algum evento, neste caso ao ser clicado no elemento o qual foi atribuido o ngClick.
 
 ```bash
 <script>
@@ -169,7 +169,7 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 <button ng-click="adcionarContato(contato)">Adicionar contato</button>
 ```
 
-- ngDisabled: Desabilita um elemento dinamicamente.
+- <strong>ngDisabled:</strong> Desabilita um elemento dinamicamente.
 
 ```bash
 <button ng-click="adcionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">
@@ -177,7 +177,7 @@ angular.module("helloWorld").controller("helloWorldCtrl", function ($scope) {
 </button>
 ```
 
--ngOptions: Serve para renderizar as opções do um select.
+- <strong>ngOptions:</strong> Serve para renderizar as opções do um select.
 
 ```bash
 <script src="lib/angular/angular.js"></script>
@@ -230,7 +230,7 @@ ou
 </select>
 ```
 
-- ngClass e ngStyle: Aplicar classes CSS e estilos dinamicamente
+- <strong>ngClass e ngStyle:</strong> Aplicar classes CSS e estilos dinamicamente
 
 ```bash
 <style>
@@ -293,7 +293,7 @@ ou
 </tr>
 ```
 
-- filter(): cria uma lista com os objetos que passam no teste implementado pela função fornecida, neste caso, retorna os contatos selecionados no checkbox, após clicar no botão Apagar Contatos.
+- <strong>filter():</strong> cria uma lista com os objetos que passam no teste implementado pela função fornecida, neste caso, retorna os contatos selecionados no checkbox, após clicar no botão Apagar Contatos.
 
 ```bash
   <script>
@@ -329,7 +329,7 @@ ou
   <button ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
 ```
 
-- some(): parecido com o filter().
+- <strong>some():</strong> parecido com o filter().
 
 ```bash
   <script>
@@ -370,10 +370,10 @@ ou
   <button ng-disabled="!isContatoSelecionado(contatos)">Apagar contatos</button>
 ```
 
-- ngShow, ngHide e ngIf: servem para exibir elementos de forma condicional.
-- ngShow: mostra o elemento em tela;
-- ngHeide: oculta o elemento em tela;
-- ngIf: caso a condição seja TRUE o elemento é criado/removido.
+- <strong>ngShow, ngHide e ngIf:</strong> servem para exibir elementos de forma condicional.
+- <strong>ngShow:</strong> mostra o elemento em tela;
+- <strong>ngHeide:</strong> oculta o elemento em tela;
+- <strong>ngIf:</strong> caso a condição seja TRUE o elemento é criado/removido.
 
 ```bash
 <script>
@@ -410,7 +410,7 @@ ou
 </button>
 ```
 
-ngInclude: utilizado para incluir conteúdo dinamicamente.
+- <strong>ngInclude:</strong> utilizado para incluir conteúdo dinamicamente.
 
 ```bash
 <div ng-include="'footer.html'"></div>
