@@ -416,6 +416,57 @@ ou
 <div ng-include="'footer.html'"></div>
 ```
 
+- <strong>ngRequired:</strong> Definir um determinado campo como obrigatório.
+- <strong>$valid e $invalid:</strong> Consultar a validade de um campo ou formulário.
+
+```bash
+<form name="contatoForm">
+  <input type="text" name="nome" ng-model="contato.nome" ng-required="true"/>
+  <input type="text" name="telefone" ng-model="contato.telefone" ng-required="true"/>
+  <select ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+    <option value="">Selecione uma operadora</option>
+  </select>
+</form>
+<div ng-show="contatoForm.nome.$invalid">
+  Por favor, preencha o campo nome!
+</div>
+<div ng-show="contatoForm.telefone.$invalid">
+  Por favor, preencha o campo telefone!
+</div>
+```
+
+- <strong>$pristine e $dirty:</strong> propriedades booleanas que indicam se o campo já foram utilizado ou não.
+
+```bash
+<script>
+  $scope.adcionarContato = function (contato) {
+    $scope.contatos.push(angular.copy(contato));
+    delete $scope.contato;
+    $scope.contatoForm.$setPrestine();  //retornar a forma inicial, como se nao fosse utilizado os campos
+  };
+</script>
+
+<div ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty">
+  Por favor, preencha o campo nome!
+</div>
+<div ng-show="contatoForm.telefone.$invalid && contatoForm.telefone.$dirty">
+  Por favor, preencha o campo telefone!
+</div>
+```
+
+- <strong>ngMinlength e ngMaxlength:</strong> define o tamanho mínimo e máximo permitido.
+- <strong>\$error:</strong> é um objeto que contém as validações e seus respectivos estados.
+
+```bash
+<input type="text" name="nome" ng-model="contato.nome" ng-required="true" ng-minlength="10"/>
+<div ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty">
+  Por favor, preencha o campo nome!
+</div>
+<div ng-show="contatoForm.nome.$error.minlength">
+  O campo nome deve ter no mínimo 10 caracteres!
+</div>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
