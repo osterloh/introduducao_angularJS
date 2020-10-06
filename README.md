@@ -437,12 +437,12 @@ ou
 
 - <strong>$pristine e $dirty:</strong> propriedades booleanas que indicam se o campo já foram utilizado ou não.
 
-```bash
+```html
 <script>
   $scope.adcionarContato = function (contato) {
     $scope.contatos.push(angular.copy(contato));
     delete $scope.contato;
-    $scope.contatoForm.$setPrestine();  //retornar a forma inicial, como se nao fosse utilizado os campos
+    $scope.contatoForm.$setPrestine(); //retornar a forma inicial, como se nao fosse utilizado os campos
   };
 </script>
 
@@ -457,7 +457,7 @@ ou
 - <strong>ngMinlength e ngMaxlength:</strong> define o tamanho mínimo e máximo permitido.
 - <strong>\$error:</strong> é um objeto que contém as validações e seus respectivos estados.
 
-```html
+```js
 <input
   type="text"
   name="nome"
