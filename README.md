@@ -457,8 +457,14 @@ ou
 - <strong>ngMinlength e ngMaxlength:</strong> define o tamanho mínimo e máximo permitido.
 - <strong>\$error:</strong> é um objeto que contém as validações e seus respectivos estados.
 
-```bash
-<input type="text" name="nome" ng-model="contato.nome" ng-required="true" ng-minlength="10"/>
+```html
+<input
+  type="text"
+  name="nome"
+  ng-model="contato.nome"
+  ng-required="true"
+  ng-minlength="10"
+/>
 <div ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty">
   Por favor, preencha o campo nome!
 </div>
