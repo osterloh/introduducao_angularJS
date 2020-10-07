@@ -488,6 +488,32 @@ ou
 </div>
 ```
 
+- <strong>ngPattern:</sstrong> Define uma RegExp para validar o campo;
+  São declaradas entre 2 //
+  \d indica dígito
+  {4} quantidade de caracter
+  {4,5} indica a quantidade min e max de caracter
+  ^ indica onde deve começar
+  \$ indica como deve terminar
+
+```html
+<input
+  type="text"
+  name="telefone"
+  ng-model="contato.telefone"
+  ng-required="true"
+  ng-pattern="/^\d{4,5}-\d{4}$/"
+/>
+<div
+  ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty"
+>
+  Por favor, preencha o campo telefone!
+</div>
+<div ng-show="contatoForm.telefone.$error.pattern">
+  O campo telefone deve ter o formato DDDD-DDDD!
+</div>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
