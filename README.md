@@ -488,12 +488,12 @@ ou
 </div>
 ```
 
-- <strong>ngPattern:</strong> Define uma RegExp para validar o campo;
-  São declaradas entre 2 //
-  \d indica dígito
-  {4} quantidade de caracter
-  {4,5} indica a quantidade min e max de caracter
-  ^ indica onde deve começar
+- <strong>ngPattern:</strong> Define uma RegExp para validar o campo;<br>
+  São declaradas entre 2 //<br>
+  \d indica dígito<br>
+  {4} quantidade de caracter<br>
+  {4,5} indica a quantidade min e max de caracter<br>
+  ^ indica onde deve começar<br>
   \$ indica como deve terminar
 
 ```html
