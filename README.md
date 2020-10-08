@@ -488,7 +488,7 @@ ou
 </div>
 ```
 
-- <strong>ngPattern:</sstrong> Define uma RegExp para validar o campo;
+- <strong>ngPattern:</strong> Define uma RegExp para validar o campo;
   São declaradas entre 2 //
   \d indica dígito
   {4} quantidade de caracter
@@ -511,6 +511,17 @@ ou
 </div>
 <div ng-show="contatoForm.telefone.$error.pattern">
   O campo telefone deve ter o formato DDDD-DDDD!
+</div>
+```
+
+- <strong>ngMessages:</strong> funciona como um switch.
+
+```html
+<div ng-messages="contatoForm.nome.$error" class="alert alert-danger">
+  <div ng-message="required">Por favor, preencha o campo nome!</div>
+  <div ng-message="minlength">
+    O campo nome deve ter no mínimo 10 caracteres!
+  </div>
 </div>
 ```
 
