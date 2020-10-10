@@ -546,9 +546,9 @@ ou
 - <strong>filter:</strong> Filtra um array com base em um critério.
 
 ```html
-<tr ng-repeat="contato in contatos | filter:{nome: criterioDeBusca}">
-  ou
-</tr>
+<tr ng-repeat="contato in contatos | filter:{nome: criterioDeBusca}"></tr>
+
+ou
 
 <tr ng-repeat="contato in contatos | filter:criterioDeBusca"></tr>
 ```
