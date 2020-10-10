@@ -525,6 +525,34 @@ ou
 </div>
 ```
 
+- <strong>uppercase:</strong> Transforma uma string em letra maiúscula.
+
+```html
+{{contato.nome | uppercase}}
+```
+
+- <strong>lowercase:</strong> Transforma uma string em letra minuscula.
+
+```html
+{{contato.operadora.nome | lowercase}}
+```
+
+- <strong>date:</strong> Formata uma data usando máscara.
+
+```html
+<td>{{contato.data | date:'dd/MM/yyyy hh:mm'}}</td>
+```
+
+- <strong>filter:</strong> Filtra um array com base em um critério.
+
+```html
+<tr ng-repeat="contato in contatos | filter:{nome: criterioDeBusca}">
+  ou
+</tr>
+
+<tr ng-repeat="contato in contatos | filter:criterioDeBusca"></tr>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
