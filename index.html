@@ -33,6 +33,7 @@
     </style>
 
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/i18n/angular-locale_pt-br.js"></script>
     <script src="lib/angular/angular-messages.js"></script>
     <script>
       angular.module("listaTelefonica", ["ngMessages"]);
@@ -72,11 +73,11 @@
           //$scope.contatos.push({ nome: nome, telefone: telefone }); //passando por parâmetro, declarando no ngClick
           //};
           $scope.operadoras = [
-            { nome: "Oi", codigo: 14, categoria: "Celular" },
-            { nome: "Vivo", codigo: 15, categoria: "Celular" },
-            { nome: "Tim", codigo: 41, categoria: "Celular" },
-            { nome: "GVT", codigo: 25, categoria: "Fixo" },
-            { nome: "Embratel", codigo: 21, categoria: "Fixo" },
+            { nome: "Oi", codigo: 14, categoria: "Celular", preco: 2 },
+            { nome: "Vivo", codigo: 15, categoria: "Celular", preco: 1 },
+            { nome: "Tim", codigo: 41, categoria: "Celular", preco: 3 },
+            { nome: "GVT", codigo: 25, categoria: "Fixo", preco: 1 },
+            { nome: "Embratel", codigo: 21, categoria: "Fixo", preco: 2 },
           ];
           //$scope.operadoras = [
           //{ nome: "Oi", codigo: 14 },
@@ -100,6 +101,10 @@
               return contato.selecionado;
             });
           };
+          $scope.ordenarPor = function (campo) {
+            $scope.criterioDeOrdenacao = campo;
+            $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
+          };
         });
     </script>
   </head>
@@ -115,8 +120,8 @@
       <table ng-show="contatos.length > 0" class="table table-striped">
         <tr>
           <th></th>
-          <th>Nome</th>
-          <th>Telefone</th>
+          <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+          <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
           <th>Operadora</th>
           <th>Data</th>
         </tr>
@@ -131,7 +136,7 @@
         >-->
         <tr
           ng-class="{'selecionado negrito': contato.selecionado}"
-          ng-repeat="contato in contatos | filter:criterioDeBusca"
+          ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao"
         >
           <td><input type="checkbox" ng-model="contato.selecionado" /></td>
           <td>{{contato.nome | uppercase}}</td>
@@ -180,7 +185,7 @@
         <select
           class="form-control"
           ng-model="contato.operadora"
-          ng-options="operadora.nome for operadora in operadoras"
+          ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' )' for operadora in operadoras | orderBy:'nome'"
         >
           <!-- 
           ng-options="operadora.nome group by operadora.categoria for operadora in operadoras"
