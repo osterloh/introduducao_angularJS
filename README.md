@@ -553,6 +553,45 @@ ou
 <tr ng-repeat="contato in contatos | filter:criterioDeBusca"></tr>
 ```
 
+- <strong>orderBy:</strong> Ordena um array com base em um critério.
+
+```html
+<tr
+  ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:'nome'"
+></tr>
+```
+
+```html
+$scope.ordenarPor = function (campo) { $scope.criterioDeOrdenacao = campo;
+$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao; };
+<tr
+  ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao"
+></tr>
+```
+
+- <strong>currency:</strong> Converte um número para moeda.
+
+```html
+<script src="lib/angular/i18n/angular-locale_pt-br.js"></script>
+
+<select
+  ng-model="contato.operadora"
+  ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' )' for operadora in operadoras | orderBy:'nome'"
+></select>
+```
+
+- <strong>number:</strong> Formata um número.
+
+```html
+{{100 | number}} ou {{100 | number:2}} ou {{100.26 | number:1}}
+```
+
+- <strong>limitTo:</strong> Limitar um array ou uma string.
+
+```html
+<td>{{contato.nome | uppercase | limitTo:3}}</td>
+```
+
 ## Tecnologias
 
 - [AngularJS](https://code.angularjs.org/1.8.0/angular-1.8.0.zip)
